@@ -1,4 +1,4 @@
-# cayman-framework
+# Cayman Framework
 Android Cayman Framework
 
 Cayman Framework for Android apps development.
@@ -12,7 +12,7 @@ Cayman Framework for Android apps development.
 - Fast Compose navigation routes building - declare route, argument names and argument types
 - Simple work with Firebase Authentication via Google, E-Mail or SMS
 - Simple work with Firebase Firestore - just use Cayman Firestore
-- Simple work with audio capturing, camera and logging - and you can sent logs from Cayman Log to your remote server or firestore database before
+- Simple work with audio capturing, camera and logging - and you can sent logs from Cayman Log to your remote server or firestore database
 - Use base Compose UI Kit contains buttons, text fields, switches, checkboxes and more - just declare your color palette or use default
 
 **READY (BACKLOG)**
