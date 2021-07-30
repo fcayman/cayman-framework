@@ -194,8 +194,22 @@ interface CaymanIntentProcessor {
     }
 
 
+    /**
+     * Broadcast receiver data observer interface
+     *
+     * @author Sergey Grigorov
+     * @since 1.0.0 First time this was introduced
+     */
     interface BroadcastDataObserver {
 
+        /**
+         * Method called if receiver notified about changes
+         *
+         * @param data Broadcast receiver data
+         *
+         * @author Sergey Grigorov
+         * @since 1.0.0 First time this was introduced
+         */
         fun onReceived(data: Intent?)
 
     }
