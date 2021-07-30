@@ -1,4 +1,4 @@
-# cayman-framework
+# Cayman Framework
 Android Cayman Framework
 
 Cayman Framework for Android apps development.
