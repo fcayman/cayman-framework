@@ -13,7 +13,7 @@ Cayman Framework for Android apps development.
 - Simple work with Firebase Authentication via Google, E-Mail or SMS
 - Simple work with Firebase Firestore - just use Cayman Firestore
 - Simple work with audio capturing, camera and logging - and you can sent logs from Cayman Log to your remote server or firestore database before
-- Use base UI Kit contains buttons, text fields, switches, checkboxes and more - just declare your color palette or use default
+- Use base Compose UI Kit contains buttons, text fields, switches, checkboxes and more - just declare your color palette or use default
 
 **READY (BACKLOG)**
 - Cayman view model
