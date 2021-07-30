@@ -2,6 +2,7 @@ package com.cayman.framework.intent.interfaces
 
 import android.app.Activity
 import android.content.Intent
+import android.content.IntentFilter
 import com.cayman.framework.intent.impl.CaymanIntentProcessorImpl
 
 /**
@@ -12,6 +13,7 @@ import com.cayman.framework.intent.impl.CaymanIntentProcessorImpl
  * @author Sergey Grigorov
  * @since 1.0.0 First time this was introduced
  */
+// TODO: Add removing broadcast receiver observers via removing receiver
 interface CaymanIntentProcessor {
 
     /**
@@ -45,6 +47,42 @@ interface CaymanIntentProcessor {
     )
 
     /**
+     * Register broadcast receiver and observer for her. If observer not needed just set null or ignore
+     * observer parameter
+     *
+     * @param intentFilter Broadcast receiver intent filter
+     * @param observer Observer for broadcast receiver results or null if not needed. You can register
+     *      observer later via add broadcast data observer method.
+     *
+     * @see BroadcastDataObserver
+     *
+     * @return Index of broadcast receiver
+     *
+     * @author Sergey Grigorov
+     * @since 1.0.0 First time this was introduced
+     */
+    fun processBroadcastReceiver(
+        intentFilter: IntentFilter,
+        observer: BroadcastDataObserver? = null
+    ): Int?
+
+    /**
+     * Notify observers via handling activity result by request code
+     *
+     * @param data Resulting intent from activity
+     * @param requestCode Request code
+     * @param resultCode Request result (status) code
+     *
+     * @author Sergey Grigorov
+     * @since 1.0.0 First time this was introduced
+     */
+    fun notifyActivityResult(
+        data: Intent?,
+        requestCode: Int,
+        resultCode: Int
+    )
+
+    /**
      * Add activity result observer
      *
      * @param requestCode Activity result request code
@@ -55,6 +93,17 @@ interface CaymanIntentProcessor {
      * @since 1.0.0 First time this was introduced
      */
     fun addActivityResultObserver(requestCode: Int, observer: ActivityResultObserver)
+
+    /**
+     * Add broadcast receiver data observer
+     *
+     * @param intentFilter Intent filter for observer assignee
+     * @param observer Broadcast data observer implementation
+     *
+     * @author Sergey Grigorov
+     * @since 1.0.0 First time this was introduced
+     */
+    fun addBroadcastDataObserver(intentFilter: IntentFilter, observer: BroadcastDataObserver)
 
     /**
      * Remove activity result observer
@@ -68,7 +117,41 @@ interface CaymanIntentProcessor {
     fun removeActivityResultObserver(requestCode: Int, observer: ActivityResultObserver)
 
     /**
-     * Clear observers list for activities results
+     * Remove broadcast receiver data observer
+     *
+     * @param intentFilter Intent filter observer assigned
+     * @param observer Broadcast data observer implementation
+     *
+     * @author Sergey Grigorov
+     * @since 1.0.0 FIrst time this was introduced
+     */
+    fun removeBroadcastDataObserver(intentFilter: IntentFilter, observer: BroadcastDataObserver)
+
+    /**
+     * Unregister broadcast receivers and remove all observers for theirs by intent filter
+     *
+     * @param intentFilter Intent filter observers and receiver assigned
+     *
+     * @author Sergey Grigorov
+     * @since 1.0.0 First time this was introduced
+     */
+    fun removeBroadcastReceivers(intentFilter: IntentFilter)
+
+    /**
+     * Unregister specified broadcast receiver and remove all observers for theirs by intent filter
+     * and index
+     *
+     * @param intentFilter Intent filter observers and receiver assigned
+     * @param index Index of broadcast receiver returned by process method
+     *
+     * @author Sergey Grigorov
+     * @since 1.0.0 First time this was introduced
+     */
+    fun removeBroadcastReceiver(intentFilter: IntentFilter, index: Int)
+
+    /**
+     * Clear observers list for activities results, unregister broadcast receivers and clear broadcast
+     *      receivers data observers
      *
      * @author Sergey Grigorov
      * @since 1.0.0 First time this was introduced
@@ -107,6 +190,13 @@ interface CaymanIntentProcessor {
          * @since 1.0.0 First time this was introduced
          */
         fun onError(resultCode: Int)
+
+    }
+
+
+    interface BroadcastDataObserver {
+
+        fun onReceived(data: Intent?)
 
     }
 
