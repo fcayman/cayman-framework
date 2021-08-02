@@ -15,7 +15,7 @@ interface CaymanPermissionProcessor {
      * Process permissions request. Method check permissions and request denied or unsetted and notify
      * observer if needed. If you not need a observer just set null or ignore observer parameter
      *
-     * @param permissions String array or permissions
+     * @param permissions String array of permissions
      * @param requestCode Permissions request code
      * @param observer Permissions result observer or null if not needed
      *
